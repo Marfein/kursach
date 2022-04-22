@@ -1,11 +1,18 @@
 import React from "react";
 import './App.css';
+import Navbar from "./components/Navbar/Navbar";
+import {BrowserRouter} from "react-router-dom";
 
 const App=()=> {
   return (
-    <div className="App">
-dsfda
-    </div>
+      <BrowserRouter>
+        <div className="app-wrapper">
+      <div className="app-wrapper-content"><Navbar /></div>
+
+
+          </div>
+      </BrowserRouter>
+
   );
 }
 
