@@ -39,7 +39,7 @@
   &__close {
     position: absolute;
     top: 50%;
-    right: -30px;
+    right: 0px;
     background: red;
     height: 60px;
     width: 60px;
@@ -153,24 +153,27 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 50px;
 }
 
 .item{
   text-decoration-line: none;
-  background: red;
+  background: #f9f9f9;
   color: white;
   border-radius: 30px;
   margin: 5px;
-  padding: 10%;
-
+  padding: 13px 30px;
+  font-weight: bold;
+  transition: background-color 0.1s ease-in-out;
+  cursor: pointer;
 }
 .ir{
   text-decoration-line: none;
-  color: white;
+  color: black;
 }
 .active{
+
   text-decoration-line: none;
-  color: white;
+  color: black;
 }

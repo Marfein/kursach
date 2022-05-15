@@ -1,10 +1,34 @@
 import React from "react";
 
-function SortPopup() {
+function SortPopup({items}) {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
+    const [activeItem, setActiveItem] = React.useState(0);
+    const sortRef = React.useRef();/* хук для получения актуальных данных */
+    const activeLabel = items[activeItem];
+
+    const toggleVisiblePopup = () => {/* переключатель состяния */
+        setVisiblePopup(!visiblePopup);/* переключение состяния */
+    }
+
+    const handleOutsideClick = (e) => {
+        if (!e.path.includes(sortRef.current)) {
+            setVisiblePopup(false);
+        }
+    }
+
+    const onSelectItem = (index) => {
+        setActiveItem(index);
+        setVisiblePopup(false);
+    };
+
+    React.useEffect(() => {/* отлавливает когда произошло внедрение */
+        document.body.addEventListener('click', handleOutsideClick);
+        console.log(sortRef.current);
+    }, [])
 
     return (
-        <div className="sort">
+        <div ref={sortRef}
+             className="sort">
             <div className="sort__label">
                 <svg
                     width="10"
@@ -16,18 +40,24 @@ function SortPopup() {
 
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => setVisiblePopup(!visiblePopup)}>популярности</span>
+                <span onClick={toggleVisiblePopup}>{activeLabel}</span>
             </div>
-            {visiblePopup && (<div className="sort__popup">
-                <ul>
-                    <li className="active">популярности</li>
-                    <li>цене</li>
-                    <li>алфавиту</li>
-                </ul>
-            </div>
+            {visiblePopup && (/* проверка состяния попапа */
+                <div className="sort__popup">
+                    <ul>
+                        {items &&
+                        items.map((name, index) => (
+                            <li
+                                onClick={() => onSelectItem(index)}
+                                className={activeItem === index ? 'active' : ''}
+                                key={`${name}_${index}`}>
+                                {name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             )}
-        </div>
-    );
-}
+            </div>)
+            }
 
-export default SortPopup;
+            export default SortPopup;

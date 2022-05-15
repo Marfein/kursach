@@ -6,7 +6,6 @@ const Stocks = () => {
 <div className="sale">
     Акции
 </div>
-
     );
 }
 
