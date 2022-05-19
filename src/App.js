@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router";
+import axios from "axios";
 
 import './components/SCSS/app.scss';
 
@@ -10,13 +11,11 @@ const App = () => {
 
     const[dishes,setDishes]= React.useState([])
 
-    React.useEffect(()=>{
-        fetch('http://localhost:3000/db.json')
-            .then((resp) =>resp.json())
-            .then(json=>{
-                setDishes(json.dishes);
-            });
-    },[])
+    React.useEffect(()=> {
+        axios.get('http://localhost:3000/db.json').then(({data}) => {
+            setDishes(data.dishes);
+        });
+    },[]);
 
 
     return (

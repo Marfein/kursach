@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const Dish=({name, imageUrl, price})=>{
 return(
@@ -30,7 +31,20 @@ return(
                 </div>
             </div>
         </div>
-)
+);
+}
+
+Dish.propTypes={//проверяет правильно ли указан формат
+    name:PropTypes.string.isRequired,
+    imageUrl:PropTypes.string.isRequired,
+    price:PropTypes.number.isRequired,
+};
+
+Dish.defaultProps ={
+    name:'Название',
+    imageUrl:'https://www.ikea.com/ru/ru/images/products/flitighet-tarelka-belyy__0713476_pe729547_s5.jpg',
+    price:0,
+
 }
 
 export default Dish;
