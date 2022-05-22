@@ -7,7 +7,8 @@ function Categories({items, onClickItem}) {
 
     const onSelectItem=(index)=>{
     setActiveItem(index);
-    }
+    onClickItem(index);
+    };
 
 return(
         <div className="categories">

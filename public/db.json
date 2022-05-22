@@ -5,7 +5,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/VnEgcf2wCjgJZQeR58mvtzUB.png",
       "name": "Шефбургер Де Люкс",
       "price": 164,
-      "category": 0,
+      "category": 1,
       "rating": 4
     },
     {
@@ -29,7 +29,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/k62q3qd1fox4k5k2b504rzm9s0ib",
       "name": "Лонгер",
       "price": 55,
-      "category": 2,
+      "category": 1,
       "rating": 2
     },
     {
@@ -37,7 +37,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/gVuS5qWLXj8oZgfRUSN9x3wv.png",
       "name": "Твистер оригинальный",
       "price": 179,
-      "category": 3,
+      "category": 2,
       "rating": 8
     },
     {
@@ -53,7 +53,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/v1NR8JHrjiBTEDHXdPBfzz21.png",
       "name": "Твистер Де Люкс острый",
       "price": 199,
-      "category": 1,
+      "category": 2,
       "rating": 9
     },
     {
@@ -61,7 +61,8 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/ozrdtcmwta7381jt6guy35epf40r",
       "name": "Домашний Баскет острый",
       "types": [0, 1],
-      "category": 4,
+      "price": 129,
+      "category": 0,
       "rating": 10
     },
     {
@@ -69,7 +70,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/rjfy6se94anzqpno4gleqiz67ynp",
       "name": "Пати Бокс",
       "price": 129,
-      "category": 5,
+      "category": 3,
       "rating": 10
     },
     {
@@ -77,7 +78,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/UDPyJBVmKhnzweYe9kwWSGyJ.png",
       "name": "Соус Терияки",
       "price": 40,
-      "category": 5,
+      "category": 4,
       "rating": 7
     },
     {
@@ -85,7 +86,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/Q6kee5BPTeAR2hf68nAb9w9K.png",
       "name": "Соус Сырный",
       "price": 40,
-      "category": 5,
+      "category": 4,
       "rating": 7
     },
     {
@@ -93,7 +94,7 @@
       "imageUrl": "https://s82079.cdn.ngenix.net/330x0/Lm94mrxiKLVYhe3j6BsbiDG2.png",
       "name": "Кетчуп Томатный",
       "price": 40,
-      "category": 5,
+      "category": 4,
       "rating": 7
     }
   ]

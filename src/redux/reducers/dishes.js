@@ -1,6 +1,6 @@
 const initialState={
     items:[],
-
+    isLoaded:false,
 }
 
 const dishes=(state=initialState ,action)=>{
