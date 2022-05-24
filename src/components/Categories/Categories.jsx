@@ -1,26 +1,24 @@
 import React from "react";
+import PropTypes, {checkPropTypes} from "prop-types";
+import Dish from "../main/Dish";
 
 
-function Categories({items, onClickItem}) {
-    const [activeItem,setActiveItem] = React.useState(null);
+function Categories({activeCategory,items, onClickCategory}) {
 
 
-    const onSelectItem=(index)=>{
-    setActiveItem(index);
-    onClickItem(index);
-    };
+
 
 return(
         <div className="categories">
             <ul>
-                <li className={activeItem === null ? 'active' : ''} onClick={() =>onSelectItem(null)}>
+                <li className={activeCategory === null ? 'active' : ''} onClick={() =>onClickCategory(null)}>
                     Все
                 </li>
                 {items &&
                 items.map((name, index) => (
                     <li
-                        className={activeItem === index ? 'active' : ''}
-                        onClick={() => onSelectItem(index)}
+                        className={activeCategory === index ? 'active' : ''}
+                        onClick={() => onClickCategory(index)}
                         key={`${name}_${index}`}>
                         {name}
                     </li>
@@ -29,4 +27,16 @@ return(
     </div>
 );
 }
+
+Categories.propTypes={//проверяет правильно ли указан формат
+   activeCategory: PropTypes.number,
+    items:PropTypes.arrayOf(PropTypes.string).isRequired,
+    onClickCategory: PropTypes.func
+};
+
+Categories.defaultProps ={
+    activeCategory:null,
+    items:[]
+}
+
 export default Categories;

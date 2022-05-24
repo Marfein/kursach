@@ -1,35 +1,52 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {Categories, SortPopup, Dish} from "../components";
-import {setCategory} from "../redux/action/filters";
+import {setCategory, setSortBy} from "../redux/action/filters";
+import {fetchDishes} from "../redux/action/dishes";
 
 const categoryNames = ['Баскеты',
     'Бургеры',
     'Твистеры',
     'Картофель',
     'Соусы'];
-const sortItems=[{name:'Популярность', type:'popular'},
-    {name:'цена', type:'price'},
-    {name:'Алфавит', type:'alphabet'},];
+const sortItems=[{name:'Популярность', type:'popular',order:'asc'},
+    {name:'цена', type:'price',order:'asc'},
+    {name:'Алфавит', type:'name',order:'asc'},];
 
-function Home ({items}){
+function Home (){
     const dispatch=useDispatch();
+    const items= useSelector(({dishes})=>dishes.items);
+    const isLoaded= useSelector(({dishes})=>dishes.isLoaded);
+    const {category,sortBy} =useSelector(({filters})=>filters)
+
+    React.useEffect(()=>{
+        dispatch(fetchDishes(sortBy,category));
+    },[sortBy,category]);
 
     const onSelectCategory=React.useCallback((index)=>{
         dispatch(setCategory(index));
+    },[]);
+
+    const onSelectSortType=React.useCallback((type)=>{
+        dispatch(setSortBy(type));
     },[]);
 
     return(
             <div className="container">
                 <div className="content__top">
                     <Categories
-                        onClickItem={onSelectCategory}
-                        items={categoryNames} />
+                        activeCategory={category}
+                        onClickCategory={onSelectCategory}
+                        items={categoryNames}
+                    />
                     <SortPopup
-                        items={sortItems} />
+                        activeSortType={sortBy.type}
+                        items={sortItems}
+                        onClickSortType={onSelectSortType}
+                    />
                 </div>
-                <h2 className="content__title">Все пиццы</h2>
+                <h2 className="content__title">Все блюда</h2>
                 <div className="content__items">
                     {items && items.map((obj) =>(
                     <Dish key={obj.id} {...obj}/>
