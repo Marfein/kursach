@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Categories, SortPopup, Dish} from "../components";
 import {setCategory, setSortBy} from "../redux/action/filters";
 import {fetchDishes} from "../redux/action/dishes";
+import {addDishToCart} from "../redux/action/cart";
 
 const categoryNames = ['Баскеты',
     'Бургеры',
@@ -14,10 +15,12 @@ const sortItems=[{name:'Популярность', type:'popular',order:'asc'},
     {name:'цена', type:'price',order:'asc'},
     {name:'Алфавит', type:'name',order:'asc'},];
 
+
 function Home (){
     const dispatch=useDispatch();
     const items= useSelector(({dishes})=>dishes.items);
-    const isLoaded= useSelector(({dishes})=>dishes.isLoaded);
+    const cartItems= useSelector(({cart})=>cart.items);
+    const isLoaded= useSelector(({dishes})=>dishes.isLoaded);//потом буду испольхзовать для фейковой загрузки с помощью скелетон
     const {category,sortBy} =useSelector(({filters})=>filters)
 
     React.useEffect(()=>{
@@ -26,11 +29,19 @@ function Home (){
 
     const onSelectCategory=React.useCallback((index)=>{
         dispatch(setCategory(index));
-    },[]);
+    },[dispatch]);
 
     const onSelectSortType=React.useCallback((type)=>{
         dispatch(setSortBy(type));
-    },[]);
+    },[dispatch]);
+
+    const handleAddDishToCart =obj=>{
+dispatch({
+    type:'ADD_DISH_CART',
+    payload:obj,
+})
+    }
+
 
     return(
             <div className="container">
@@ -49,7 +60,11 @@ function Home (){
                 <h2 className="content__title">Все блюда</h2>
                 <div className="content__items">
                     {items && items.map((obj) =>(
-                    <Dish key={obj.id} {...obj}/>
+                    <Dish
+                        onClickAddDish={handleAddDishToCart}
+                        key={obj.id}
+                        cartCount={cartItems[obj.id] && cartItems[obj.id] .length}
+                        {...obj}/>
                     ))}
                 </div>
             </div>

@@ -1,20 +1,32 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import Button from "../Header/button/Button";
 
-const Dish=({name, imageUrl, price})=>{
-return(
+const Dish = ({id, name, imageUrl, price, onClickAddDish, cartCount}) => {
+
+    const onAddDish = () => {
+        const obj = {
+            id,
+            name,
+            imageUrl,
+            price
+        };
+        onClickAddDish(obj);
+    }
+
+    return (
         <div className="pizza-block">
             <div className="pizza-block__pp">
                 <img
-                className="pizza-block__pp__image"
-                src={imageUrl}
-                alt="Pizza"
-            />
+                    className="pizza-block__pp__image"
+                    src={imageUrl}
+                    alt="Pizza"
+                />
             </div>
             <h4 className="pizza-block__title">{name}</h4>
 
             <div className="pizza-block__bottom">
-                <div className="button button--outline button--add">
+                <Button onClick={onAddDish} className="button--add" outline>
                     <svg
                         width="12"
                         height="12"
@@ -28,22 +40,25 @@ return(
                         />
                     </svg>
                     <span>{price} ₽</span>
-                </div>
+                    {cartCount && <i>{cartCount}</i>}
+                </Button>
             </div>
         </div>
-);
+    );
 }
 
-Dish.propTypes={//проверяет правильно ли указан формат
-    name:PropTypes.string.isRequired,
-    imageUrl:PropTypes.string.isRequired,
-    price:PropTypes.number.isRequired,
+Dish.propTypes = {//проверяет правильно ли указан формат
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    onClickAddDish: PropTypes.func,
+    cartCount: PropTypes.number
 };
 
-Dish.defaultProps ={
-    name:'Название',
-    imageUrl:'https://www.ikea.com/ru/ru/images/products/flitighet-tarelka-belyy__0713476_pe729547_s5.jpg',
-    price:0,
+Dish.defaultProps = {
+    name: 'Название',
+    imageUrl: 'https://www.ikea.com/ru/ru/images/products/flitighet-tarelka-belyy__0713476_pe729547_s5.jpg',
+    price: 0,
 
 }
 
