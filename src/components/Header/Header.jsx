@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 function Header() {
 
-    const {totalPrice,totalCount}= useSelector(({cart})=>({//useSelector передает из редакса редьюсер cart вытаскивает переменные и делает из них переменные
+    const {totalPrice,totalCount}= useSelector(({cart})=>({//useSelector передает из редакса редьюсер cart вытаскивает данные и делает из них переменные
        totalPrice:cart.totalPrice,
        totalCount:cart.totalCount,
     }))

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Categories from "../Categories/Categories";
 
 const SortPopup= React.memo(function SortPopup({items,activeSortType, onClickSortType}) {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
@@ -71,4 +70,4 @@ SortPopup.defaultProps ={
     items:[]
 }
 
-            export default SortPopup;
+export default SortPopup;

@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {Categories, SortPopup, Dish} from "../components";
 import {setCategory, setSortBy} from "../redux/action/filters";
 import {fetchDishes} from "../redux/action/dishes";
-import {addDishToCart} from "../redux/action/cart";
 
 const categoryNames = ['Баскеты',
     'Бургеры',
@@ -20,7 +19,7 @@ function Home (){
     const dispatch=useDispatch();
     const items= useSelector(({dishes})=>dishes.items);
     const cartItems= useSelector(({cart})=>cart.items);
-    const isLoaded= useSelector(({dishes})=>dishes.isLoaded);//потом буду испольхзовать для фейковой загрузки с помощью скелетон
+    const isLoaded= useSelector(({dishes})=>dishes.isLoaded);//потом буду использовать для фейковой загрузки с помощью скелетон
     const {category,sortBy} =useSelector(({filters})=>filters)
 
     React.useEffect(()=>{
@@ -63,7 +62,7 @@ dispatch({
                     <Dish
                         onClickAddDish={handleAddDishToCart}
                         key={obj.id}
-                        cartCount={cartItems[obj.id] && cartItems[obj.id] .length}
+                        cartCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                         {...obj}/>
                     ))}
                 </div>
